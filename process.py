@@ -62,7 +62,7 @@ def judge(result):
 		for i in range(sz):
 			idx = -1
 			for j in range(i+1, sz):
-				if result[j]==result[i]:
+				if author[result[j]]==author[result[i]]:
 					idx = j
 			if idx!=-1:
 				con = True
@@ -70,7 +70,7 @@ def judge(result):
 				break
 		if con==False:
 			break
-	return len(result)
+	return result
 
 def dfs(key, result):
 	if flag[key] == 'Merge':
@@ -80,8 +80,8 @@ def dfs(key, result):
 			file.write(str(tmp_result))
 			file.write('\n')
 			return
-	author_num = judge(result)
-	if author_num > 5:
+	result = judge(result)
+	if len(result) > 5:
 		return
 	if tree.has_key(key):
 		for new_key in tree[key]:
