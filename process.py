@@ -50,11 +50,27 @@ dp_no = {}
 
 file = open('tmp.txt', 'a')
 
+# def judge(result):
+# 	aset = set()
+# 	for v in result:
+# 		aset.add(author[v])
+# 	return len(aset)
 def judge(result):
-	aset = set()
-	for v in result:
-		aset.add(author[v])
-	return len(aset)
+	while True:
+		con = False
+		sz = len(result)
+		for i in range(sz):
+			idx = -1
+			for j in range(i+1, sz):
+				if result[j]==result[i]:
+					idx = j
+			if idx!=-1:
+				con = True
+				result = result[0:i]+result[idx:]
+				break
+		if con==False:
+			break
+	return len(result)
 
 def dfs(key, result):
 	if flag[key] == 'Merge':
