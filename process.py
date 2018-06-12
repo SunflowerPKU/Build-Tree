@@ -76,12 +76,14 @@ def dfs(key, result):
 	if flag[key] == 'Merge':
 		if author[key] == '\"Linus Torvalds\"':
 			tmp_result = copy.deepcopy(result)
-			global_result.append(tmp_result)
-			file.write(str(tmp_result))
-			file.write('\n')
+			if tmp_result not in global_result:
+				file.write(str(tmp_result))
+				file.write('\n')
+				global_result.append(tmp_result)
+				print tmp_result
 			return
 	result = judge(result)
-	if len(result) > 5:
+	if len(result) > 12:
 		return
 	if tree.has_key(key):
 		for new_key in tree[key]:
@@ -118,6 +120,8 @@ def new_dfs(key):
 
 
 i= 0
+#dfs('d521de04a73abb5e662c12eafa8c839aaaa6ae4f',['d521de04a73abb5e662c12eafa8c839aaaa6ae4f'])
+
 for key in tree: 
 	if author.has_key(key):
 		print('----------------------solve: ', i, key)
@@ -126,7 +130,7 @@ for key in tree:
 		print('global_result size:', len(global_result))
 file.close()
 		# print ('result:', result)
-
+"""
 # print('final global_result: ', dp)
 
 answer = []
@@ -164,6 +168,6 @@ for i in final_answer:
 	file2.write('\n')
 file2.close()
 
-
+"""
 
  
